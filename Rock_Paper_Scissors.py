@@ -49,5 +49,3 @@ else:
         print("It's a tie!")
     else:
         print("You lose!")
-    
-
