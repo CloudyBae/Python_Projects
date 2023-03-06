@@ -1,6 +1,5 @@
 #Calculator
 from art import logo
-print(logo)
 
 #Add
 def add(n1, n2):
@@ -26,19 +25,25 @@ operations = {
   "/" : divide,
 }
 
-#First number that user inputs into the calculator
-num1 = int(input("What's the first number?: "))
-
-#Prints the operations that are available to do in the dictionary
-for symbol in operations:
-  print(symbol)
-
-#User input for what operation to do and the second number
-operation_symbol = input("Pick an operation from the line above: ")
-num2 = int(input("What's the second number?: "))
-
-#Inputs the user input into the code below to get the answer
-calculation_function = operations[operation_symbol]
-answer = calculation_function(num1, num2)
-
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+#Recursion so if you say 'n', you can do a brand new calculator function  
+def calculator():
+    print(logo)
+    num1 = float(input("What's the first number?: "))
+    for symbol in operations:
+            print(symbol)
+            
+    continue_calc = True
+    #While loop to continue operations until you select no
+    while continue_calc:
+        operation_symbol = input("Pick an operation: ")
+        num2 = float(input("What's the next number?: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        if input(f"Type 'y' to continue calculating with {answer}, or type 'n'to exit.: ") == "y":
+            num1 = answer
+        else:
+            continue_calc = False
+            calculator()
+            
+calculator()
