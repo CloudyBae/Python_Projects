@@ -16,6 +16,7 @@ def calculate_score(cards):
         return sum(cards)
 
 def compare(user_score, computer_score):
+    """Compares the user & computer scores to each other"""
     if user_score == computer_score:
         return "Draw"
     elif computer_score == 0:
@@ -32,6 +33,7 @@ def compare(user_score, computer_score):
         return "Your hand is lower than computer, you lose."
     
 def play_game():
+    """Blackjack game"""
     print(logo)
     
     user_cards = []
