@@ -1,39 +1,36 @@
-from turtle import Turtle
-from turtle import Screen
+from turtle import Turtle, Screen
+import random
 
-
-yoon = Turtle()
+is_race_on = False
 screen = Screen()
+screen.setup(width=500, height=400)
+user_bet = screen.textinput(title="Make your bed", prompt="Which turtle will win the race? Enter a color: ")
+colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+y_position = [-70, -40, -10, 20, 50, 80]
+all_turtles = []
 
 
-def moves_forward():
-    yoon.forward(10)
+for turtle_index in range (0, 6):
+    new_turtle = Turtle(shape="turtle")
+    new_turtle.color(colors[turtle_index])
+    new_turtle.penup()
+    new_turtle.goto(x=-230, y=y_position[turtle_index])
+    all_turtles.append(new_turtle)
 
-def moves_backward():
-    yoon.backward(10)
+if user_bet:
+    is_race_on = True
     
-def counter_clockwise():
-    yoon.left(25)
-
-def clockwise():
-    yoon.right(25)
+while is_race_on:
     
-def clear_drawing():
-    screen.resetscreen()
-
-
-
-
-
-screen.onkey(moves_forward, "w")
-screen.listen()
-screen.onkey(moves_backward, "s")
-screen.listen()
-screen.onkey(counter_clockwise, "a")
-screen.listen()
-screen.onkey(clockwise, "d")
-screen.listen()
-screen.onkey(clear_drawing, "c")
-screen.listen()
+    for turtle in all_turtles:
+        if turtle.xcor() > 230:
+            is_race_on = False
+            winning_color = turtle.pencolor()
+            if winning_color == user_bet:
+                print(f"You've won! The {winning_color} turle is the winner!")
+            else:
+                print(f"You've lost! The {winning_color} turtle is the winner!")
+        random_distance = random.randint(0, 10)
+        turtle.forward(random_distance)
 
 screen.exitonclick()
