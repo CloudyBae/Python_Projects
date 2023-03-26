@@ -1,1 +1,1 @@
-# Repo of python projects I have done to grow my skills of developing and scripting with Python.
+# Repo of python projects I have done to grow my skills of development and scripting with Python.
