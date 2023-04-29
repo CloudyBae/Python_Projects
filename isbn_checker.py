@@ -21,7 +21,6 @@ def hyphen(isbn):
 def is_valid(isbn):
     total = 0
     number = 10
-    check = 0
     isbn_list = hyphen(isbn)
     if hyphen(isbn) == False:
         return False
