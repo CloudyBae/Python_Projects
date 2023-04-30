@@ -15,13 +15,13 @@ def value_of_card(card):
     3.  '2' - '10' = numerical value.
     """
     face_cards = ["J", "Q", "K"]
-    if card.isnumeric() == True:
+    
+    if card.isnumeric():
         return int(card)
-    if card.isalpha() == True:
+    if card.isalpha():
         if card in face_cards:
             return 10
-        else:
-            return 1
+    return 1
     
 def higher_card(card_one, card_two):
     """Determine which card has a higher value in the hand.
@@ -36,9 +36,9 @@ def higher_card(card_one, card_two):
     one = value_of_card(card_one)
     two = value_of_card(card_two)
     
+    if one == two: return (card_one, card_two)
     if one > two: return card_one
-    if one < two: return card_two
-    if one == two: return card_one, card_two
+    return card_two
 
 def value_of_ace(card_one, card_two):
     """Calculate the most advantageous value for the ace card.
@@ -52,6 +52,7 @@ def value_of_ace(card_one, card_two):
     """
     one = 0
     two = 0
+    
     if card_one == "A":
         one = 11
     else:
@@ -65,8 +66,7 @@ def value_of_ace(card_one, card_two):
     combined = one + two
     if combined + 11 <= 21:
         return 11
-    else:
-        return 1
+    return 1
         
 def is_blackjack(card_one, card_two):
     """Determine if the hand is a 'natural' or 'blackjack'.
@@ -89,8 +89,8 @@ def can_split_pairs(card_one, card_two):
     """
     ten_value = ["10", "K", "Q", "J"]
     if card_one == card_two: return True
-    if card_one in ten_value and card_two in ten_value: return True
-    else: return False
+    if (card_one in ten_value) and (card_two in ten_value): return True
+    return False
 
 def can_double_down(card_one, card_two):
     """Determine if a blackjack player can place a double down bet.
@@ -99,7 +99,5 @@ def can_double_down(card_one, card_two):
     :return: bool - can the hand can be doubled down? (i.e. totals 9, 10 or 11 points).
     """
     value = [9, 10, 11]
-    one = value_of_card(card_one)
-    two = value_of_card(card_two)
-    total = one + two
+    total = (value_of_card(card_one)) + (value_of_card(card_two))
     return total in value
