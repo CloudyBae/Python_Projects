@@ -14,33 +14,25 @@ EQUAL = "equal"
 UNEQUAL = "unequal"
 
 def sublist(list_one, list_two):
+    one = ','.join(map(str, list_one))
+    two = ','.join(map(str, list_two))
+    
     # lists are same length
     if list_one == list_two: 
         return EQUAL
     # list is superlist
     if len(list_one) > len(list_two):
-        if sum(list_two) == 0:
+        if one == "":
             return SUPERLIST
-            
-        compare_list = list_one
-        start = list_one.index(list_two[0])
-        for i in range(len(list_two)):
-            compare_list[start] = list_two[i]
-            start += 1
-            if compare_list == list_one:
-                return SUPERLIST
-            return UNEQUAL
+        if two in one:
+            return SUPERLIST
+        return UNEQUAL
+
     # list is sublist
     if len(list_one) < len(list_two):
-        if sum(list_one) == 0:
+        if two == "":
             return SUBLIST
-            
-        compare_list = list_two
-        start = list_two.index(list_one[0])
-        for i in range(len(list_one)):
-            compare_list[start] = list_one[i]
-            start += 1
-            if compare_list == list_two:
-                return SUBLIST
-            return UNEQUAL
+        if one in two:
+            return SUBLIST
+        return UNEQUAL
     return UNEQUAL
